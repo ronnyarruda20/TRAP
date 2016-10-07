@@ -1,0 +1,23 @@
+[
+	{"id": 1, "nome": "Rafael Pinho Silva", 
+		"telefone":[
+		{"id":1 , "numero":"999999999", "pessoaId":1},
+		{"id":2,  "numero":"64 46466464", "pessoaId":1}
+		],
+	"profissao":"Desenvolverdor Señor"},
+
+	{"id": 2, "nome": "Ronny de arruda pinho e silva", 
+		"telefone":[
+		{"id":1 , "numero":"999999999", "pessoaId":1},
+		{"id":2,  "numero":"64 46466464", "pessoaId":1}
+		],
+	"profissao":"Desenvolvedor Pleno III"},
+
+	{"id": 3, "nome": "Alguem de Computação", 
+		"telefone":[
+		{"id":1 , "numero":"999999999", "pessoaId":1},
+		{"id":2,  "numero":"64 46466464", "pessoaId":1}
+		],
+	"profissao":"Estagiário"}
+
+]
