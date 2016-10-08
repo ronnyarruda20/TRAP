@@ -1,0 +1,37 @@
+	
+<!--table with search-->
+
+<div class="well">
+	<label >Search for :<input type="text" ng-model="criteria" ></label>
+	<a class="btn btn-success right"  href="#/contato/novo">
+		<span class="glyphicon glyphicon-plus"></span></a>
+	</div>
+	<table class="table table-bordered">
+		<thead>
+			<th>ID</th>
+			<th>Nome</th>
+			<th>Profisão</th>
+			<th>Telefone</th>
+			<th>Ações</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="contato in contatos | filter:criteria">
+				<td>{{contato.id}}</td>
+				<td>{{contato.nome}}</td>
+				<td>{{contato.profissao}}</td>
+				<td >
+					<select class="btn btn-default">
+						<option ng-repeat="tel in contato.telefone">{{tel.numero}}</option>
+					</select>
+				</td>
+				<td>
+					<a class="btn btn-primary  btn-acao"  href="#/contato/visualizar/{{contato.id}}"> 
+						<span class="glyphicon glyphicon-file"></span></a>
+
+						<a class="btn btn-danger" ng-click="removeContato(contato.id)" >
+							<span class="glyphicon glyphicon-remove"></span>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>

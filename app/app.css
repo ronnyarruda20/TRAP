@@ -12,6 +12,10 @@ h1 {
   height: 36px;
 }
 
+.telefoneLista{
+  margin-top: 8px;
+}
+
 /* View: Phone list */
 .phones {
   list-style: none;
