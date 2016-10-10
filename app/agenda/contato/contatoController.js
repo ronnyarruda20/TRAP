@@ -1,13 +1,16 @@
 'use strict';
 
-contatoModulo.controller('contatoController', ['$scope', '$routeParams' ,'contatoServico', 
-	function($scope, $routeParams, contatoServico ){
+contatoModulo.controller('contatoController', ['$scope', '$routeParams' ,'contatoServico', '$location',
+	function($scope, $routeParams, contatoServico, $location ){
 
     $scope.contatos = [];
 
     $scope.contato = [];
 
     $scope.contato.telefone = [{'id':1}];
+
+    //variavel para tratamento de erro no tela.
+    $scope.messengerErro;
 
     //recebe lista de contatos
     var contatos =  contatoServico.query(function(){
@@ -36,16 +39,29 @@ contatoModulo.controller('contatoController', ['$scope', '$routeParams' ,'contat
 
     }
 
+    //cria um novo contato 
     $scope.criaNovoContato = function(contato){
 
-     
-      if(contato.id == null){
-        contatoServico.save(contato);
-      }else{
-         contatoServico.update({contatoId : contato.id}, contato);
-      } 
+     if(contato.id == null){
+      contatoServico.save(contato, function(){
+        console.log("criado com sucesso" + erro);
+        $location.path('/contato');
+      });
+      
+    }else{
 
-    }
+     contatoServico.update({contatoId : contato.id}, contato, function(){
+
+      console.log("editado com sucesso" + erro);
+      $location.path('/contato');
+
+    },function(erro){
+        $scope.messengerErro = "Não foir possivel editar o  contato " + erro.value;
+    });
+     
+   } 
+ }
+
 
     //adiciona campo para digitar o telefone
     $scope.adicionaTelefone = function() {

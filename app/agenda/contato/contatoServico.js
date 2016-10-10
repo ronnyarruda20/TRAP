@@ -5,7 +5,7 @@
 var url = 'http://localhost:8000/agenda/contato/json';
 
 contatoModulo.factory('contatoServico', ['$resource', function($resource){
-	var resource =  $resource(url+'/:contatoId.json', {contatoId:'contatos'}, {
+	return $resource(url+'/:contatoId.json', {contatoId:'contatos'}, {
 		'get':    {method:'GET'},
 		'save':   {method:'POST'},
 		'query':  {method:'GET', isArray:true},
@@ -13,8 +13,5 @@ contatoModulo.factory('contatoServico', ['$resource', function($resource){
 		'delete': {method:'DELETE'},
 		'update': { method:'PUT' }
 	});
-
-	console.log(resource);
-	return resource;
 }]);
 
