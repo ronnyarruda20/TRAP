@@ -1,13 +1,16 @@
 'use strict';
 
-contatoModulo.controller('contatoController', ['$scope', '$routeParams' ,'contatoServico', '$location',
-	function($scope, $routeParams, contatoServico, $location ){
+contatoModulo.controller('contatoController', [
+  '$scope', '$routeParams' ,'contatoServico', '$location', '$sessionStorage',
+	function($scope, $routeParams, contatoServico, $location , $sessionStorage){
 
     $scope.contatos = [];
 
     $scope.contato = [];
 
     $scope.contato.telefone = [{'id':1}];
+
+    $sessionStorage = "teste";
 
     //variavel para tratamento de erro no tela.
     $scope.messengerErro;
