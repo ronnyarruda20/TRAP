@@ -3,5 +3,7 @@
 // Define the `trapApp` module
 angular.module('trapApp', [
   'ngRoute',
-  'PessoaModulo'
+  'contatoModulo',
+  'usuarioModulo',
+  'loginModulo'
 ]);

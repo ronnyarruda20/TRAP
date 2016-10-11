@@ -1,0 +1,49 @@
+
+<div class="col-md-6 col-md-offset-3">
+
+	<h2>Contato</h2>
+
+	<div class="alert alert-danger" role="alert" ng-show="messengerErro">{{messengerErro}}</div>
+
+	<form name="form"   role="form">
+
+		<div class="form-group">
+			<label for="labelNome">Nome</label>
+			<input type="text" class="form-control" 
+			id="contatoNome" ng-model="contato.nome" placeholder="Digite um nome">
+		</div>
+
+		<div class="form-group">
+			<label for="labelProfissao">Profissão</label>
+			<input type="text" class="form-control" 
+			id="contatoProfissao" ng-model="contato.profissao" placeholder="Digite uma profissão">
+		</div>
+
+		<label for="formContato" >Telefone</label>
+		<div class="form-group" >
+
+			<div ng-repeat="tel in contato.telefone">
+				<input   type="text"  class="form-control telefoneLista" 
+				ng-model="tel.numero" name="" placeholder="Digite um telefone">
+			</div>
+			<br/>
+
+			<button class="btn btn-danger" ng-click="removeTelefone()">
+				<span class="glyphicon glyphicon-minus"></span>
+			</button>
+			<button class="btn btn-success"  ng-click="adicionaTelefone()">
+				<span class="glyphicon glyphicon-plus"></span>
+			</button>
+
+		</div>
+
+		<br/>
+
+		<button class="btn btn-primary" ng-click="criaNovoContato(contato)">Salvar</button>
+		<!-- <a class="btn btn-primary "  href="#/contato">Salvar</a> -->
+		<a class="btn btn-primary "  href="#">Voltar</
+
+		</form>
+
+
+	</div>
