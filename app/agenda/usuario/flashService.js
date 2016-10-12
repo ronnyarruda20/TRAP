@@ -1,9 +1,6 @@
-(function () {
-    'use strict';
+ 'use strict';
 
-    angular
-        .module('app')
-        .factory('FlashService', FlashService);
+usuarioModulo.factory('FlashService', FlashService);
 
     FlashService.$inject = ['$rootScope'];
     function FlashService($rootScope) {
@@ -50,5 +47,3 @@
             };
         }
     }
-
-})();

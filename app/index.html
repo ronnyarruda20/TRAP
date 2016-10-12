@@ -11,23 +11,43 @@
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-resource/angular-resource.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
   <script src="app.module.js"></script>
   <script src="app.config.js"></script>
   <script src="agenda/contato/contatoModulo.js"></script>
   <script src="agenda/contato/contatoController.js"></script>
   <script src="agenda/contato/contatoServico.js"></script>
   <script src="agenda/usuario/usuarioModulo.js"></script>
+  <script src="agenda/usuario/usuarioController.js"></script>
+  <script src="agenda/usuario/usuarioService.js"></script>
+  <script src="agenda/usuario/usuarioServiceLocalStorage.js"></script>
+  <script src="agenda/usuario/flashService.js"></script>
   <script src="agenda/login/loginModulo.js"></script>
   <script src="agenda/login/loginController.js"></script>
+  <script src="agenda/login/loginService.js"></script>
+  <script src="agenda/login/loginAuthenticationService.js"></script>
+
 
   <script src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
   
 </head>
 <body>
 
-  <div >
-    <div ng-view ></div>
-  </div>
-
+ <div >
+        <div class="container">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+                <div ng-view></div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="credits text-center">
+        <p>
+            <a href="http://jasonwatmore.com/post/2015/03/10/AngularJS-User-Registration-and-Login-Example.aspx" target="_top">AngularJS User Registration and Login Example</a>
+        </p>
+        <p>
+            <a href="http://jasonwatmore.com" target="_top">JasonWatmore.com</a>
+        </p>
+    </div> -->
 </body>
 </html>
