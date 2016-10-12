@@ -1,8 +1,8 @@
 'use strict';
 
 contatoModulo.controller('contatoController', [
-  '$scope', '$routeParams' ,'contatoServico', '$location', '$sessionStorage',
-	function($scope, $routeParams, contatoServico, $location , $sessionStorage){
+  '$scope', '$routeParams' ,'contatoServico', '$location',
+  function($scope, $routeParams, contatoServico, $location ){
 
     $scope.contatos = [];
 
@@ -10,12 +10,10 @@ contatoModulo.controller('contatoController', [
 
     $scope.contato.telefone = [{'id':1}];
 
-    $sessionStorage = "teste";
-
     //variavel para tratamento de erro no tela.
     $scope.messengerErro;
 
-    //recebe lista de contatos
+    // recebe lista de contatos
     var contatos =  contatoServico.query(function(){
 
       $scope.contatos  = contatos;
@@ -23,11 +21,17 @@ contatoModulo.controller('contatoController', [
     });
 
     //pega um cantanto selecionado
-    var contato =  contatoServico.get({contatoId : $routeParams.contatoId}, function(){
+    if($routeParams.contatoId != null){
 
-      $scope.contato  = contato;
+      var contato =  contatoServico.get({contatoId : $routeParams.contatoId}, function(){
 
-    });
+        $scope.contato  = contato;
+
+      },function(teste){
+       console.log(teste)
+     });
+
+    }
 
     //remove um contato 
     $scope.removeContato = function(id){
@@ -38,6 +42,7 @@ contatoModulo.controller('contatoController', [
 
       },function(erro){
         console.log("Erro ao remover contato " + erro);
+
       });
 
     }
@@ -59,7 +64,7 @@ contatoModulo.controller('contatoController', [
       $location.path('/contato');
 
     },function(erro){
-        $scope.messengerErro = "Não foir possivel editar o  contato " + erro.value;
+      $scope.messengerErro = "Não foir possivel editar o  contato " + erro.value;
     });
      
    } 

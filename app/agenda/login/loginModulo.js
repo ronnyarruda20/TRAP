@@ -1,6 +1,6 @@
 'use strict';
 
-var loginModulo = angular.module('loginModulo', [])
+var loginModulo = angular.module('loginModulo', ['ngStorage', 'ngCookies'])
 .config(['$locationProvider' ,'$routeProvider',
     function config($locationProvider, $routeProvider) {
       // $locationProvider.hashPrefix('!');
