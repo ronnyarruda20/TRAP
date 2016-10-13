@@ -7,6 +7,11 @@
   <link rel="stylesheet" href="app.css" />
   <link rel="stylesheet" href="app.animations.css" />
 
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -26,6 +31,7 @@
   <script src="agenda/login/loginController.js"></script>
   <script src="agenda/login/loginService.js"></script>
   <script src="agenda/login/loginAuthenticationService.js"></script>
+  <script src="agenda/navbar/navbarController.js"></script>
 
 
   <script src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
@@ -33,13 +39,37 @@
 </head>
 <body>
 
- <div >
-        <div class="container">
-            <div class="col-sm-8 col-sm-offset-2">
-                <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
-                <div ng-view></div>
-            </div>
+
+
+
+  <div >
+    <div class="container" ng-controller="navbarController">
+      <div class="col-sm-8 col-sm-offset-2">
+
+        <nav  ng-if="globals.currentUser" class="navbar navbar-light" style="background-color: #e3f2fd;">
+          <ul class="nav navbar-nav">
+
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" >Contato
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#/contato">Lista contato</a></li>
+                  <li><a href="#/contato/novo">Novo contato</a></li>
+                </ul>
+            </li>
+
+            </ul>
+            <ul class="nav navbar-nav  pull-right">
+              <li class="nav-item ">
+                <a class="nav-link " ng-click="sair()">Sair</a>
+              </li>
+            </ul>
+          </nav>
+
+          <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+          <div ng-view></div>
         </div>
+      </div>
     </div>
     <!-- <div class="credits text-center">
         <p>
@@ -48,6 +78,6 @@
         <p>
             <a href="http://jasonwatmore.com" target="_top">JasonWatmore.com</a>
         </p>
-    </div> -->
-</body>
-</html>
+      </div> -->
+    </body>
+    </html>

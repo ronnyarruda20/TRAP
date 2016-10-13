@@ -5,9 +5,8 @@ loginModulo.controller('loginController',[
 	'$scope', '$localStorage', '$location', 'AuthenticationService', 'FlashService',
 	function($scope, $localStorage, $location, AuthenticationService, FlashService){
     $scope.dataLoading = false;
-
-
-    AuthenticationService.ClearCredentials();
+    
+    // AuthenticationService.ClearCredentials();
     
 
     $scope.login = function(acesso){
@@ -15,7 +14,7 @@ loginModulo.controller('loginController',[
       AuthenticationService.Login(acesso.login, acesso.senha, function (response) {
         if (response.success) {
           AuthenticationService.SetCredentials(acesso.login, acesso.senha);
-          $location.path('/');
+          $location.path('/contato');
         } else {
           FlashService.Error(response.message);
           $scope.dataLoading = false;

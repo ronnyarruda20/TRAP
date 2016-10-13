@@ -41,6 +41,7 @@ function AuthenticationService($http, $cookies, $rootScope, $timeout, usuarioSer
         function SetCredentials(username, password) {
             var authdata = Base64.encode(username + ':' + password);
 
+
             $rootScope.globals = {
                 currentUser: {
                     username: username,
@@ -49,7 +50,7 @@ function AuthenticationService($http, $cookies, $rootScope, $timeout, usuarioSer
             };
 
             $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
-            $cookies.put('globals', $rootScope.globals);
+            $cookies.put('globals', JSON.stringify($rootScope.globals));
         }
 
         function ClearCredentials() {
