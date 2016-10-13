@@ -5,5 +5,6 @@ angular.module('trapApp', [
   'ngRoute',
   'contatoModulo',
   'usuarioModulo',
-  'loginModulo'
+  'loginModulo',
+  'navbarModulo'
 ]);
