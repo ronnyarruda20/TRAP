@@ -1,11 +1,12 @@
 	
 <!--table with search-->
 
-<div class="well">
+<div >
 	<label >Buscar por : <input placeholder="descrição" type="text" ng-model="criteria" ></label>
 	<a class="btn btn-success pull-right"  href="#/contato/novo">
 		<span class="glyphicon glyphicon-plus"></span></a>
 	</div>
+	<small>Quantidade encontrado na lista : {{tamanhoDaLista}}</small>
 	<table class="table table-bordered">
 		<thead>
 			<th>ID</th>
@@ -34,4 +35,6 @@
 					</td>
 				</tr>
 			</tbody>
+			
 		</table>
+		

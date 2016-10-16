@@ -2,13 +2,6 @@
 
 angular.
 module('trapApp')
-// .config(['$locationProvider' ,'$routeProvider',
-// 	function config($locationProvider, $routeProvider) {
-//       // $locationProvider.hashPrefix('!');
-//       $routeProvider.
-//       otherwise('/');
-
-//   }])
 
 .run(['$rootScope', '$location', '$cookieStore', '$http' , 
 	function run($rootScope, $location, $cookies, $http) {
@@ -22,14 +15,16 @@ module('trapApp')
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
         // redirect to login page if not logged in and trying to access a restricted page
-        var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
+        var restrictedPage = $.inArray($location.path(), ['/login', '/cadastrarUsuario']) === -1;
         var loggedIn = $rootScope.globals.currentUser;
          if (restrictedPage && !loggedIn) {
             	$location.path('/login');
+         }else if (!restrictedPage && loggedIn){
+            $location.path('/contato');
          }
         });
 
-        }]);
+}]);
 
 
 
