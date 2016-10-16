@@ -21,7 +21,7 @@ var contatoModulo = angular.module('contatoModulo',['ngResource'])
         }).
          when('/contato/listagem',{
           templateUrl:'agenda/contato/listagempordemanta-template.html',
-          controller: 'contatoController'
+          controller: 'contatoListaController'
         }).
         otherwise('/contato');
     

@@ -13,7 +13,7 @@
 
 		<div class="row form-group">
 			<div class="form-group" ng-class="{ 'has-error': form.nomeContato.$dirty && form.nomeContato.$error.required }">	
-				<label for="nomeContato">Nome</label>
+				<label for="nomeLabelContato">Nome</label>
 				<input type="text" name="nomeContato" id="nomeContato" class="form-control" 
 				ng-model="contato.nome" required />
 				<span ng-show="form.nomeContato.$dirty && form.nomeContato.$error.required" 
@@ -33,7 +33,7 @@
 		<div class="row form-group">
 			<label>Telefone</label>
 
-			<div ng-repeat="tel in contato.telefone" >
+			<div ng-repeat="tel in contato.telefones" >
 				<input type="text" class="form-control telefoneLista pull-left" 
 				ng-model="tel.numero" placeholder="Digite um telefone" style="width:68%;"> 
 
@@ -41,8 +41,9 @@
 			</div>
 
 			<div class="btn-group pull-rigth "  style="top: 8px; "> 
-				<button class="btn btn-danger $last"  ng-click="removeTelefone()">
+					<button class="btn btn-danger $last"  ng-click="removeTelefone()">
 					<i class="glyphicon glyphicon-minus"></i></button>
+
 					<button class="btn btn-success" ng-click="adicionaTelefone()">
 						<i class="glyphicon glyphicon-plus"></i></button>
 					</div>

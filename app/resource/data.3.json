@@ -1,0 +1,22 @@
+{
+  "data": [
+    {
+      "name": "Mayron",
+      "id": "51"
+    },
+    {
+      "name": "Flávio",
+      "id": "52"
+    },
+    {
+      "name": "Matheus",
+      "id": "53"
+    }
+  ],
+  "paging": {
+    "previous": "resource/data.2.json"
+  },
+  "summary": {
+    "total_count": 53
+  }
+}
