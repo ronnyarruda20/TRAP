@@ -99,8 +99,6 @@ usuarioModulo.factory('usuarioServiceLS',  ['$timeout', '$filter', '$q',
         }
         
         // private functions
-       var localStorage = [];
-        
         function getUsers() {
 
             if(!localStorage.users){

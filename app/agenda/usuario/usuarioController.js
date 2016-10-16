@@ -1,8 +1,8 @@
 'use strict';
 
 usuarioModulo.controller('usuarioController', [
-	'$scope', 'usuarioService', '$localStorage', '$location', 'usuarioServiceLS', 'FlashService',
-	function($scope, usuarioService, $localStorage , $location, usuarioServiceLS, FlashService){
+	'$scope',  '$localStorage', '$location', 'usuarioServiceLS', 'FlashService',
+	function($scope,  $localStorage , $location, usuarioServiceLS, FlashService){
 		$scope.dataLoading = false;
 
 		$scope.registrar = function(usuario) {

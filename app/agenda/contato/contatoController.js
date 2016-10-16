@@ -1,123 +1,133 @@
 'use strict';
 
 contatoModulo.controller('contatoController', [
-  '$scope', '$routeParams' ,'contatoServico', '$location', 'FlashService',
-  function($scope, $routeParams, contatoServico, $location , FlashService){
+  '$scope', '$routeParams' , '$location', 
+  'FlashService', 'getPessoas', 'getPessoa', 'updatePessoa', 
+  'insertPessoa', 'removePessoa', 'SimplePaginate',
+  function($scope, $routeParams, $location ,
+    FlashService, getPessoas, getPessoa ,
+    updatePessoa, insertPessoa, removePessoa, SimplePaginate){
 
     $scope.contatos = [];
 
     $scope.contato = [];
 
-    $scope.contato.telefone = [{'id':1}];
-
-    $scope.tamanhoDaLista = 0;
+    $scope.contato.telefones = [{'id':1}];
 
 
+    $scope.reloadPage = function(){
+     getPessoas.query(function(response){
+       SimplePaginate.configure({
+                // data:response.data.data,
+                data:response,
+                perPage: 5
+              });
 
-    // recebe lista de contatos
-    contatoServico.query(function(contatos){
-      $scope.contatos = contatos;
-      $scope.tamanhoDaLista = contatos.length;
+
+       $scope.paginate = {
+        result : SimplePaginate.goToPage(0),
+        total : SimplePaginate.itemsTotal(),
+        next : function() {
+          $scope.paginate.result = SimplePaginate.next();
+        },
+        prev : function() {
+          $scope.paginate.result = SimplePaginate.prev();
+        }
+      };
     });
+   }
 
-     // $scope.tamanhoDaLista =  $scope.contatos.data.length;
-
-     // console.log($scope.contatos.data.length)
+   $scope.reloadPage();
 
     //pega um contanto selecionado
-    if($routeParams.contatoId !== null){
+    if($routeParams.contatoId != null ){
 
+      getPessoa.get({contatoId : $routeParams.contatoId}, function(contato){
 
-      var contacts =   contatoServico.query(function(){
+        $scope.contato  = contato;
 
-        $scope.contato  = contacts[$routeParams.contatoId];
-
-      }, function(error) {
-
+      },function(error){
         FlashService.Error("Contato selecionado não foi encontrado");
       });
 
-   // for (var i = 0; i < contatosArray.length; i++) {
-   //    console.log( $scope.contatos[i]);
-   // }
-     //  var contato =  contatoServico.get({contatoId : $routeParams.contatoId}, function(){
 
-     //    $scope.contato  = contato;
+      //    var contacts =   contatoServico.query(function(){
 
-     //  },function(error){
-     //    FlashService.Error("Contato selecionado não foi encontrado");
-     // });
+      //   $scope.contato  = contacts[$routeParams.contatoId];
 
-   }
+      // }, function(error) {
+
+      //   FlashService.Error("Contato selecionado não foi encontrado");
+      // });
+
+    }
 
     //remove um contato 
     $scope.removeContato = function(id){
 
-      contatoServico.delete({contatoId : id}, function(){
+     var resposta = confirm("Deseja remover esse registro?");
 
+     if(resposta == true){
+
+      removePessoa.remove({contatoId : id}, function(){
+        $scope.reloadPage()
 
       },function(erro){
         FlashService.Error("Não foi possivel excluir contato");
       });
 
-    };
+    }
+  }
 
     //cria um novo contato 
     $scope.criaNovoContato = function(contato){
 
-     if(contato.id === null){
-      contatoServico.save(contato, function(){
-        FlashService.Success('Contato criado com sucesso', true);
+
+     var listaTelefone = contato.telefones;
+
+     if(contato.id == null ){
+
+      var contatoEntrada =  JSON.stringify({
+        nome: contato.nome,
+        telefones: listaTelefone});
+
+      insertPessoa.save(contatoEntrada, function(){
         $location.path('/contato');
-      },function(){
-        FlashService.Error('Erro ao criar contato');
+      },function(error){
+        FlashService.Error('Erro ao criar contato (Status :' + error.status+')');
       });
       
     }else{
 
-     contatoServico.update({contatoId : contato.id}, contato, function(){
-
-      console.log("editado com sucesso");
+     updatePessoa.update({contatoId :  contato.id}, contato, function(){
       $location.path('/contato');
 
     },function(erro){
-      FlashService("Não foir possivel editar o  contato " + erro.value);
+
+      FlashService.Error("Não foi possivel editar o  contato ");
+
     });
-     
+
    } 
  };
 
 
     //adiciona campo para digitar o telefone
     $scope.adicionaTelefone = function() {
-      var id = $scope.contato.telefone.length+1;
-      $scope.contato.telefone.push({'id':id});
+      var id = $scope.contato.telefones.length+1;
+      $scope.contato.telefones.push({'id':id});
     };
 
     //remove campo do telefone
     $scope.removeTelefone = function() {
-     var ultimoValor = $scope.contato.telefone.length-1;
+     var ultimoValor = $scope.contato.telefones.length-1;
      if(ultimoValor < 1){
       return false;
     }
 
-    $scope.contato.telefone.splice(ultimoValor);
+    $scope.contato.telefones.splice(ultimoValor);
   };
 
- //  var c = [];
- //  $scope.totalPorPagina = 10;
- //  $scope.totalRegistro = c.length;
- //  $scope.pagina = [];
- //  var p = $scope.totalRegistro > $scope.totalPorPagina ? Math.ceil($scope.totalRegistro / $scope.totalPorPagina) : 1;
- //  for (var i = 0; i < p; i++) {
- //   $scope.pagina.push(c.splice(0, $scope.totalPorPagina));
- // }
- // $scope.lista = $scope.pagina[0];
- // //insira o código aqui
- //  //função chamada no ngClick;
- //  $scope.loadListPagination = function (i) {
- //    $scope.lista = $scope.pagina[i];
- //  };
 
 }]);
 

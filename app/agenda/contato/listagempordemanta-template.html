@@ -1,14 +1,67 @@
+<section id="content" >
 
-//HTML fica assim
-<div ng-repeat="x in lista">
-{{x}}
-</div>
-<nav ng-show="totalPorPagina < totalRegistro">
-        <ul class="pagination">
-            <li ng-repeat="p in pagina">
-                <a href ng-click="loadListPagination($index)" style="background-color: #777;">
-                    {{$index + 1}}
-                </a>
-            </li>
-        </ul>
-    </nav>
+	<div ng-init="reloadPage">
+		<label >Buscar por : <input placeholder="descrição" type="text" ng-model="criteria" ></label>
+		<!-- <button class="btn btn-primary" ng-click="reloadPage()" >Atualizar</button> -->
+		<a class="btn btn-success pull-right"  href="#/contato/novo">
+			<span class="glyphicon glyphicon-plus"></span></a>
+		</div>
+		<table class="table table-bordered" >
+			<thead>
+				<th>Nome</th>
+				<th>Profisão</th>
+				<th>Telefone</th>
+				<th>Ações</th>
+			</thead>
+			<tbody>
+				<tr ng-repeat="contato in paginate.result.data | filter:criteria">
+					<td>{{contato.nome}}</td>
+					<td>{{contato.profissao}}</td>
+					<td >
+						<select class="btn btn-default">
+							<option ng-repeat="tel in contato.telefones">{{tel.numero}}</option>
+						</select>
+					</td>
+					<td>
+						<a class="btn btn-primary  btn-acao"  href="#/contato/visualizar/{{contato.id}}"> 
+							<span class="glyphicon glyphicon-file"></span></a>
+
+							<a class="btn btn-danger" 
+							href="javascript:func()"
+							ng-click="removeContato(contato.id)" >
+							<span class="glyphicon glyphicon-remove"></span>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+
+		</table>
+		<nav aria-label="Page navigation">
+			<ul class="pagination">
+				<li class="page-item">
+					<a  href="" ng-click="paginate.prev()" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+						<span class="sr-only">Anterior</span>
+					</a>
+				</li>
+				<li class="page-item">
+				<!-- <a class="page-link"  ng-repeat="value in paginate.totalPaginas.length" href="#">{{value}}</a></li> -->
+				<!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
+				<li class="page-item"><a class="page-link" href="#">3</a></li>
+				<li class="page-item"><a class="page-link" href="#">4</a></li>
+				<li class="page-item"><a class="page-link" href="#">5</a></li> -->
+				<li class="page-item">
+					<a href="" ng-click="paginate.next()" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+						<span class="sr-only">Próximo</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+
+		<p>Mostrando registros de {{paginate.result.from}} até {{paginate.result.to}} de um total de {{paginate.total}}</p>
+
+	</section>
+
+
+	Total : {{paginate.totalPaginas}}
