@@ -3,6 +3,8 @@
   "globals": {
     // Angular
     "angular": false,
+    "contatoModulo" : false;
+
 
     // Angular mocks
     "module": false,
@@ -20,5 +22,7 @@
     "browser": false,
     "element": false,
     "by": false
+
+
   }
 }

@@ -1,0 +1,14 @@
+
+//HTML fica assim
+<div ng-repeat="x in lista">
+{{x}}
+</div>
+<nav ng-show="totalPorPagina < totalRegistro">
+        <ul class="pagination">
+            <li ng-repeat="p in pagina">
+                <a href ng-click="loadListPagination($index)" style="background-color: #777;">
+                    {{$index + 1}}
+                </a>
+            </li>
+        </ul>
+    </nav>

@@ -11,7 +11,7 @@ From the project's root directory run:
 npm start
 ```
 
-The application should now be available at http://localhost:8000/index.html.
+The application should now be available at http://192.168.0.4:8000/index.html.
 
 ## Testing with Protractor
 

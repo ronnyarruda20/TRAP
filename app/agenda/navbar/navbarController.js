@@ -7,5 +7,5 @@ angular.module('navbarModulo',[])
 		$scope.sair = function(){
 			AuthenticationService.ClearCredentials();
 			$location.path('/login');
-		}
+		};
 }]);

@@ -10,14 +10,14 @@ usuarioModulo.controller('usuarioController', [
 			usuarioServiceLS.Create(usuario)
 			.then(function (response) {
 				if (response.success) {
-					FlashService.Success('Registration successful', true);
+					FlashService.Success('Registrado com successo', true);
 					$location.path('/login');
 				} else {
 					FlashService.Error(response.message);
 					$scope.dataLoading = false;
 				}
 			});
-		}
+		};
 
 	}]);
 
