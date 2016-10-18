@@ -3,10 +3,10 @@
 contatoModulo.controller('contatoController', [
   '$scope', '$routeParams' , '$location', 
   'FlashService', 'getPessoas', 'getPessoa', 'updatePessoa', 
-  'insertPessoa', 'removePessoa', 'SimplePaginate',
+  'insertPessoa', 'removePessoa', 'SimplePaginate', 'updateTelefone',
   function($scope, $routeParams, $location ,
     FlashService, getPessoas, getPessoa ,
-    updatePessoa, insertPessoa, removePessoa, SimplePaginate){
+    updatePessoa, insertPessoa, removePessoa, SimplePaginate, updateTelefone){
 
     $scope.contatos = [];
 
@@ -49,17 +49,6 @@ contatoModulo.controller('contatoController', [
       },function(error){
         FlashService.Error("Contato selecionado não foi encontrado");
       });
-
-
-      //    var contacts =   contatoServico.query(function(){
-
-      //   $scope.contato  = contacts[$routeParams.contatoId];
-
-      // }, function(error) {
-
-      //   FlashService.Error("Contato selecionado não foi encontrado");
-      // });
-
     }
 
     //remove um contato 
@@ -99,7 +88,13 @@ contatoModulo.controller('contatoController', [
       
     }else{
 
-     updatePessoa.update({contatoId :  contato.id}, contato, function(){
+    updateTelefone.save({contatoId :  contato.id}, contato.telefones, function(){},function(erro){
+      console.log(erro.data.message);
+      FlashService.Error("Não foi possivel editar o  telefone ");
+      return false;
+    })
+
+     updatePessoa.update({contatoId :  contato.id}, contato.nome, function(){
       $location.path('/contato');
 
     },function(erro){
@@ -128,6 +123,27 @@ contatoModulo.controller('contatoController', [
     $scope.contato.telefones.splice(ultimoValor);
   };
 
+
+  var dummyContent = $('.dummy-content').children(),
+      i;
+
+
+    $('#add-content').click(function(e){
+      e.preventDefault();
+
+      if($(dummyContent[0]).is(":visible")){
+        for(i=0;i<dummyContent.length;i++){
+          $(dummyContent[i]).fadeOut(600);
+        }
+      }
+      else{
+        for(i=0;i<dummyContent.length;i++){
+          $(dummyContent[i]).delay(600*i).fadeIn(600);
+        }
+      }
+
+    });
+  
 
 }]);
 

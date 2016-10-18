@@ -6,9 +6,11 @@
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
   <link rel="stylesheet" href="app.css" />
 
+
   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
   <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -23,6 +25,7 @@
   <script src="agenda/contato/contatoServico.js"></script>
   <script src="agenda/contato/contatoListaController.js"></script>
   <script src="agenda/contato/pagination.js"></script>
+  <script src="agenda/contato/contatoTelefoneFilter.js"></script>
   <script src="agenda/usuario/usuarioModulo.js"></script>
   <script src="agenda/usuario/usuarioController.js"></script>
   <!-- <script src="agenda/usuario/usuarioService.js"></script> -->
@@ -38,55 +41,70 @@
   <script src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
   
 </head>
+
+
 <body>
+  <header>
 
+    <div class="header-limiter">
+     <nav  ng-if="globals.currentUser" class="navbar "   
+     ng-controller="navbarController">
 
+     <a class="navbar-brand" >{{globals.currentUser.username}}</a>
 
+     <ul class="nav navbar-nav">
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" >Contato
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#/contato">Lista contato</a></li>
+            <li><a href="#/contato/novo">Novo contato</a></li>
+            <li><a href="#/contato/listagem">Listagem teste</a></li>
+          </ul>
+        </li>
 
-  <div >
-    <div class="container" ng-controller="navbarController">
-      <div class="col-sm-8 col-sm-offset-2">
+      </ul>
+      <ul class="nav navbar-nav  pull-right">
+        <li class="nav-item ">
+          <a class="btn nav-link " ng-click="sair()">Sair</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 
+</header>
+
+<section class="main-content">
+  <div class="container">
+    <div class="col-sm-8 col-sm-offset-2">
       <img src="/img/icec.jpg" />
-
-
-        <nav  ng-if="globals.currentUser" class="navbar navbar-light" style="background-color: #e3f2fd;">
-
-          <a class="navbar-brand" >{{globals.currentUser.username}}</a>
-
-          <ul class="nav navbar-nav">
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" >Contato
-                <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#/contato">Lista contato</a></li>
-                  <li><a href="#/contato/novo">Novo contato</a></li>
-                  <li><a href="#/contato/listagem">Listagem teste</a></li>
-                </ul>
-              </li>
-
-            </ul>
-            <ul class="nav navbar-nav  pull-right">
-              <li class="nav-item ">
-                <a class="nav-link " ng-click="sair()">Sair</a>
-              </li>
-            </ul>
-          </nav>
-
-          <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
-          <div ng-view></div>
-        </div>
-      </div>
     </div>
-    <div class="credits text-center">
-       <!--  <p>
-            <a href="http://jasonwatmore.com/post/2015/03/10/AngularJS-User-Registration-and-Login-Example.aspx" target="_top">AngularJS User Registration and Login Example</a>
-        </p> -->
-        <br/>
-        <br/>
-        <p class="footer">
-            <a href="##" target="_top">Versão 1.0</a>
-        </p>
-      </div>
-    </body>
-    </html>
+  </div>
+  <div class="card">
+   <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+   <div ng-view></div>
+ </div>
+</div>
+</section>
+
+
+
+<footer>
+  <div class="footer-limiter">
+    <div class="footer-right">
+      <a href="#"><i class="fa fa-facebook"></i></a>
+      <a href="#"><i class="fa fa-twitter"></i></a>
+      <a href="#"><i class="fa fa-linkedin"></i></a>
+      <a href="#"><i class="fa fa-github"></i></a>
+    </div>
+    <div class="footer-left">
+      <a class="footer-links">Projeto Computação Distribuida - TRAPP  </a>
+      <p>Turma de Ciências da Computação © 2016</p>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+
+</html>

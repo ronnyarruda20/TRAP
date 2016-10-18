@@ -1,4 +1,5 @@
-<div class="col-md-6 col-md-offset-3">
+<div class="main-content">
+<!-- <div class="col-md-8 col-md-offset-3"> -->
 
 	<div class="row form-group"> 
 		<h2>Contato</h2> 
@@ -13,9 +14,9 @@
 
 		<div class="row form-group">
 			<div class="form-group" ng-class="{ 'has-error': form.nomeContato.$dirty && form.nomeContato.$error.required }">	
-				<label for="nomeLabelContato">Nome</label>
+				<!-- <label for="nomeLabelContato">Nome</label> -->
 				<input type="text" name="nomeContato" id="nomeContato" class="form-control" 
-				ng-model="contato.nome" required />
+				ng-model="contato.nome" required placeholder="Nome" />
 				<span ng-show="form.nomeContato.$dirty && form.nomeContato.$error.required" 
 				class="help-block">Nome é obrigatorio</span>
 			</div>
@@ -23,21 +24,18 @@
 
 		<div class="row form-group">
 			<div class="form-group" ng-class="{ 'has-error': form.profissaoContato.$dirty && form.profissaoContato.$error.required }">	
-				<label for="profissaoContato">Profissão</label>
-				<input type="text" name="profissaoContato" id="profissaoContato" class="form-control" ng-model="contato.profissao" required />
+				<input type="text" name="profissaoContato" id="profissaoContato" class="form-control" ng-model="contato.profissao" required   required placeholder="Profissão"/>
 				<span ng-show="form.profissaoContato.$dirty && form.profissaoContato.$error.required" 
 				class="help-block">Profissão é obrigatória</span>
 			</div>
 		</div>
 
 		<div class="row form-group">
-			<label>Telefone</label>
 
 			<div ng-repeat="tel in contato.telefones" >
-				<input type="text" class="form-control telefoneLista pull-left" 
+				<input class="form-control telefoneLista pull-left"
+				phone-input  type="text"
 				ng-model="tel.numero" placeholder="Digite um telefone" style="width:68%;"> 
-
-				
 			</div>
 
 			<div class="btn-group pull-rigth "  style="top: 8px; "> 
@@ -57,3 +55,4 @@
 	</div>
 
 </div>
+<!-- </div> -->
