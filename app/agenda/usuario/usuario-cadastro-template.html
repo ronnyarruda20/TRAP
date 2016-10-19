@@ -1,31 +1,28 @@
 <div class="col-md-6 col-md-offset-3">
 
-    <h2>Registrar</h2>
+    <h2 class="pull-left">Registrar</h2>
     
     <form name="form" role="form">
 
         <div class="form-group" ng-class="{ 'has-error': form.firstName.$dirty && form.nome.$error.required }">
-            <label for="username">Nome</label>
-            <input type="text" name="firstName" id="firstName" class="form-control" ng-model="usuario.nome" required />
+            <input type="text" name="firstName" id="firstName" class="form-control" ng-model="usuario.nome" required  placeholder="Nome" />
             <span ng-show="form.firstName.$dirty && form.firstName.$error.required" class="help-block">Nome é obrigatorio</span>
         </div>
 
         <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.login.$error.required }">
-            <label for="login">Login</label>
-            <input type="text" name="login" id="login" class="form-control" ng-model="usuario.login" required />
+            <input type="text" name="login" id="login" class="form-control" ng-model="usuario.login" required placeholder="Login"  />
             <span ng-show="form.username.$dirty && form.login.$error.required" class="help-block">Login é obrigatorio</span>
         </div>
 
         <div class="form-group" ng-class="{ 'has-error': form.senha.$dirty && form.senha.$error.required }">
-            <label for="password">Senha</label>
-            <input type="password" name="senha" id="senha" class="form-control" ng-model="usuario.senha" required />
+            <input type="password" name="senha" id="senha" class="form-control" ng-model="usuario.senha" required placeholder="Senha" />
             <span ng-show="form.senha.$dirty && form.senha.$error.required" class="help-block">Senha é obrigatorio</span>
         </div>
 
         <div class="form-actions">
-            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary" ng-click="registrar(usuario)">Registrar</button>
+            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary pull-left" ng-click="registrar(usuario)">Registrar</button>
             <img ng-if="dataLoading" src="/img/loading.gif" />
-            <a href="#/login" class="btn btn-link">Cancelar</a>
+            <a href="#/login" class="btn btn-link pull-right">Cancelar</a>
         </div>
     </form>
 </div>

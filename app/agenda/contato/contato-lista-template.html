@@ -1,16 +1,16 @@
-<section id="content" >
 
 	<div ng-init="reloadPage">
-	<div class="col-md-4"></div>
-		 <input class=" form-control " 
-		 placeholder="Pesquisar" 
-		 type="text" 
-		 ng-model="criteria" ></div>
-		<!-- <button class="btn btn-primary" ng-click="reloadPage()" >Atualizar</button> -->
+		<div class="col-lg-6 pull-left">
+			<input class="form-control" 
+			placeholder="Pesquisar" 
+			type="text" 
+			ng-model="criteria" >
+	</div>
+		
 		<!-- <a class="btn btn-success pull-right"  href="#/contato/novo">
 			<span class="glyphicon glyphicon-plus"></span></a>
 		</div> -->
-		<p>Mostrando registros de {{paginate.result.from}} até {{paginate.result.to}} de um total de {{paginate.total}}</p>
+		<!-- <p>Mostrando registros de {{paginate.result.from}} até {{paginate.result.to}} de um total de {{paginate.total}}</p> -->
 		<table class="table table-bordered" >
 			<thead>
 				<th>Nome</th>
@@ -23,10 +23,9 @@
 					<td>{{contato.nome}}</td>
 					<td>{{contato.profissao}}</td>
 					<td >
-						<!-- <select class="btn btn-default"> -->
-						<!-- <option ng-repeat="tel in contato.telefones">{{tel.numero}}</option> -->
-
-						<!-- </select> -->
+						<select class="btn btn-default">
+						<option ng-repeat="tel in contato.telefones">{{tel.numero}}</option>
+						</select>
 						
 					</td>
 
@@ -62,5 +61,4 @@
 
 		
 
-	</section>
 	

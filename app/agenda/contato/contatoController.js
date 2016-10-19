@@ -47,7 +47,9 @@ contatoModulo.controller('contatoController', [
         $scope.contato  = contato;
 
       },function(error){
+    
         FlashService.Error("Contato selecionado não foi encontrado");
+
       });
     }
 
@@ -94,7 +96,7 @@ contatoModulo.controller('contatoController', [
       return false;
     })
 
-     updatePessoa.update({contatoId :  contato.id}, contato.nome, function(){
+     updatePessoa.update({contatoId :  contato.id}, contato, function(){
       $location.path('/contato');
 
     },function(erro){

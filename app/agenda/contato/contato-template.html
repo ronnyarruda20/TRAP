@@ -1,58 +1,49 @@
-<div class="main-content">
-<!-- <div class="col-md-8 col-md-offset-3"> -->
 
-	<div class="row form-group"> 
-		<h2>Contato</h2> 
-	</div>
-
-	<form name="form" role="form" >
-
-		<div class="row form-group"> 
-			<div class="alert alert-danger" role="alert" 
-			ng-show="messengerErro">{{messengerErro}}</div>
-		</div>	
-
-		<div class="row form-group">
-			<div class="form-group" ng-class="{ 'has-error': form.nomeContato.$dirty && form.nomeContato.$error.required }">	
-				<!-- <label for="nomeLabelContato">Nome</label> -->
-				<input type="text" name="nomeContato" id="nomeContato" class="form-control" 
-				ng-model="contato.nome" required placeholder="Nome" />
-				<span ng-show="form.nomeContato.$dirty && form.nomeContato.$error.required" 
-				class="help-block">Nome é obrigatorio</span>
-			</div>
-		</div>
-
-		<div class="row form-group">
-			<div class="form-group" ng-class="{ 'has-error': form.profissaoContato.$dirty && form.profissaoContato.$error.required }">	
-				<input type="text" name="profissaoContato" id="profissaoContato" class="form-control" ng-model="contato.profissao" required   required placeholder="Profissão"/>
-				<span ng-show="form.profissaoContato.$dirty && form.profissaoContato.$error.required" 
-				class="help-block">Profissão é obrigatória</span>
-			</div>
-		</div>
-
-		<div class="row form-group">
-
-			<div ng-repeat="tel in contato.telefones" >
-				<input class="form-control telefoneLista pull-left"
-				phone-input  type="text"
-				ng-model="tel.numero" placeholder="Digite um telefone" style="width:68%;"> 
-			</div>
-
-			<div class="btn-group pull-rigth "  style="top: 8px; "> 
-					<button class="btn btn-danger $last"  ng-click="removeTelefone()">
-					<i class="glyphicon glyphicon-minus"></i></button>
-
-					<button class="btn btn-success" ng-click="adicionaTelefone()">
-						<i class="glyphicon glyphicon-plus"></i></button>
-					</div>
-		</div>
-
-	</form>
-
-	<div class="row pull-left">
-		<button class="btn btn-primary" ng-click="criaNovoContato(contato)">Salvar</button>
-		<a class="btn btn-primary " href="#/contato">Voltar</a>
-	</div>
-
-</div>
+<!-- <div class="row form-group">  -->
+<h2 class="pull-left">Contato</h2> 
 <!-- </div> -->
+
+<form name="form" role="form" >
+
+	<div class="form-group">
+		<div class="form-group" ng-class="{ 'has-error': form.nomeContato.$dirty && form.nomeContato.$error.required }">	
+			<!-- <label for="nomeLabelContato">Nome</label> -->
+			<input type="text" name="nomeContato" id="nomeContato" class="form-control" 
+			ng-model="contato.nome" required placeholder="Nome" />
+			<span ng-show="form.nomeContato.$dirty && form.nomeContato.$error.required" 
+			class="help-block">Nome é obrigatorio</span>
+		</div>
+	</div>
+
+	<div class=" form-group">
+		<div class="form-group" ng-class="{ 'has-error': form.profissaoContato.$dirty && form.profissaoContato.$error.required }">	
+			<input type="text" name="profissaoContato" id="profissaoContato" class="form-control" ng-model="contato.profissao" required   required placeholder="Profissão"/>
+			<span ng-show="form.profissaoContato.$dirty && form.profissaoContato.$error.required" 
+			class="help-block">Profissão é obrigatória</span>
+		</div>
+	</div>
+
+	<div class=" form-group">
+
+		<div ng-repeat="tel in contato.telefones" >
+			<input class="form-control telefoneLista pull-left"
+			phone-input  type="text"
+			ng-model="tel.numero" placeholder="Digite um telefone" style="width:68%;"> 
+		</div>
+
+		<div class="btn-group pull-rigth "  style="top: 8px; "> 
+			<button class="btn btn-danger $last"  ng-click="removeTelefone()">
+				<i class="glyphicon glyphicon-minus"></i></button>
+
+				<button class="btn btn-success" ng-click="adicionaTelefone()">
+					<i class="glyphicon glyphicon-plus"></i></button>
+				</div>
+			</div>
+		</form>
+		</br>
+		<div class="row">
+			<div class=" pull-left">
+				<button class="btn btn-primary" ng-click="criaNovoContato(contato)">Salvar</button>
+				<a class="btn btn-primary " href="#/contato">Voltar</a>
+			</div>
+		</div>

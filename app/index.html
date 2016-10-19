@@ -76,18 +76,17 @@
 
 <section class="main-content">
   <div class="container">
-    <div class="col-sm-8 col-sm-offset-2">
-      <img src="/img/icec.jpg" />
-    </div>
+    <!-- <div class="col-sm-8 col-sm-offset-2"> -->
+     
+    <!-- </div> -->
   </div>
   <div class="card">
+   <img src="/img/icec.jpg"  class="pull-left" /></br></br></br></br>
    <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
    <div ng-view></div>
  </div>
 </div>
 </section>
-
-
 
 <footer>
   <div class="footer-limiter">

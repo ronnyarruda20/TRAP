@@ -2,7 +2,7 @@
 
 //esta a camada de serviço que faz conexao rest ou seja faz a requisiçao get, post, update, delete, put, option..
 
-var urlBase = 'http://192.168.0.10:8090/';
+var urlBase = 'http://trappapi.azurewebsites.net/';
 
 
 contatoModulo.factory('getPessoas',function($resource){
