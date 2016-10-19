@@ -26,7 +26,7 @@
   "scripts": {
     "postinstall": "bower install",
     "prestart": "npm install",
-    "start": "http://trappweb.azurewebsites.net/",
+    "start": "http-server ./app",
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js --single-run",
@@ -39,5 +39,4 @@
   "dependencies": {
     "angular-input-masks": "^2.5.0"
   }
-   // -a http://trappweb.azurewebsites.net -p 80 -c-1
 }
