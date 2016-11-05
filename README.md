@@ -5,6 +5,9 @@ Requisitos
 
 	* Nodejs https://nodejs.org/en/download/
 	* Git https://git-scm.com/downloads
+    
+
+- caso der erro de cookies installar este pacote https://www.npmjs.com/package/angular-cookies
 
 Instalar node e o git.
 
