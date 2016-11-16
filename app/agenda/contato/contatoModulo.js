@@ -19,9 +19,9 @@ var contatoModulo = angular.module('contatoModulo',['ngResource'])
           templateUrl:'agenda/contato/contato-template.html',
           controller: 'contatoController'
         }).
-         when('/contato/listagem',{
-          templateUrl:'agenda/contato/listagempordemanta-template.html',
-          controller: 'contatoListaController'
+         when('/listatodos',{
+          templateUrl:'agenda/contato/listaTodasPessoas-template.html',
+          controller: 'contatoListaTodosController'
         }).
         otherwise('/contato/:usuarioId');
     

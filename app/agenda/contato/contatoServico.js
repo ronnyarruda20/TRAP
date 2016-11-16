@@ -37,3 +37,7 @@ contatoModulo.factory('updateTelefone', ['$resource', function($resource){
 		'update': { method:'PUT'}
 	});
 }]);
+
+contatoModulo.factory('getTodasPessoas',function($resource){
+	return $resource(urlBase + 'pessoa', null, {});
+});

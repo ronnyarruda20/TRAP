@@ -1,40 +1,27 @@
 <section id="content" >
 
-	<div ng-init="reloadPage">
-		<label >Buscar por : <input placeholder="descrição" type="text" ng-model="criteria" ></label>
-		<!-- <button class="btn btn-primary" ng-click="reloadPage()" >Atualizar</button> -->
-		<a class="btn btn-success pull-right"  href="#/contato/novo">
-			<span class="glyphicon glyphicon-plus"></span></a>
+	<div ng-init="reloadPage()">
+	 <div class="pull-left">
+			<input class="form-control" placeholder="Pesquisar" type="text" 
+			ng-model="criteria" >
 		</div>
 		<table class="table table-bordered" >
 			<thead>
 				<th>Nome</th>
 				<th>Profisão</th>
 				<th>Telefone</th>
-				<th>Ações</th>
 			</thead>
 			<tbody>
 				<tr ng-repeat="contato in paginate.result.data | filter:criteria">
 					<td>{{contato.nome}}</td>
-					<td>{{contato.profissao}}</td>
+					<td>{{contato.profissaoDescricao}}</td>
 					<td >
 						<select class="btn btn-default">
-							<option ng-repeat="tel in contato.telefones">{{tel.numero}}</option>
+						<option ng-repeat="tel in contato.telefones">{{tel.numero}}</option>
 						</select>
+						
 					</td>
-					<td>
-						<a class="btn btn-primary  btn-acao"  href="#/contato/visualizar/{{contato.id}}"> 
-							<span class="glyphicon glyphicon-file"></span></a>
-
-							<a class="btn btn-danger" 
-							href="javascript:func()"
-							ng-click="removeContato(contato.id)" >
-							<span class="glyphicon glyphicon-remove"></span>
-						</a>
-					</td>
-				</tr>
 			</tbody>
-
 		</table>
 		<nav aria-label="Page navigation">
 			<ul class="pagination">
@@ -59,9 +46,8 @@
 			</ul>
 		</nav>
 
-		<p>Mostrando registros de {{paginate.result.from}} até {{paginate.result.to}} de um total de {{paginate.total}}</p>
+
+
+		<p>Total de contatos registrado no sistema {{paginate.total}}</p>
 
 	</section>
-
-
-	Total : {{paginate.totalPaginas}}
