@@ -7,15 +7,15 @@ var contatoModulo = angular.module('contatoModulo',['ngResource'])
       // $locationProvider.hashPrefix('!');
 
       $routeProvider.
-        when('/contato',{
+        when('/contato/:usuarioId',{
           templateUrl:'agenda/contato/contato-lista-template.html',
           controller: 'contatoController'
         }).
-        when('/contato/visualizar/:contatoId',{
+        when('/contato/:usuarioId/visualizar/:contatoId',{
           templateUrl:'agenda/contato/contato-template.html',
           controller: 'contatoController'
         }).
-         when('/contato/novo',{
+         when('/contato/:usuarioId/novo',{
           templateUrl:'agenda/contato/contato-template.html',
           controller: 'contatoController'
         }).
@@ -23,6 +23,6 @@ var contatoModulo = angular.module('contatoModulo',['ngResource'])
           templateUrl:'agenda/contato/listagempordemanta-template.html',
           controller: 'contatoListaController'
         }).
-        otherwise('/contato');
+        otherwise('/contato/:usuarioId');
     
   }]);

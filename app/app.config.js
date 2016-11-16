@@ -9,7 +9,7 @@ module('trapApp')
     	// keep user logged in after page refresh
     	$rootScope.globals = $cookies.get('globals') || {};
 
-    	if ($rootScope.globals.currentUser) {
+    	if ($rootScope.globals.currentUser) { 
             $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
          }
 
@@ -20,7 +20,7 @@ module('trapApp')
          if (restrictedPage && !loggedIn) {
             	$location.path('/login');
          }else if (!restrictedPage && loggedIn){
-            $location.path('/contato');
+            $location.path('/contato/'+$rootScope.globals.currentUser.usuarioId);
          }
         });
 

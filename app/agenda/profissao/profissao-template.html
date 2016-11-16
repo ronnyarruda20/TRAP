@@ -1,0 +1,71 @@
+
+<!-- <div class="row form-group">  -->
+<div ><h2 class="pull-left">Profissão</h2></div>
+<!-- </div> -->
+
+<form name="form" role="form"  >
+
+	<div class="form-group">
+
+		<div class="row" ng-class="{ 'has-error': form.profissaoNome.$dirty && form.profissaoNome.$error.required }">	
+		<div class="col-md-10">
+			<input type="text" name="profissaoNome" id="profissaoNome" class="form-control" 
+			ng-model="profissao.nome" required placeholder="Nome" />
+			<span ng-show="form.profissaoNome.$dirty && form.profissaoNome.$error.required" 
+			class="help-block">Nome é obrigatorio</span>
+		</div>
+			
+		<div class="col-md-2">
+			 <button class="btn btn-primary" ng-click="inserir(profissao)"><span class="glyphicon glyphicon-plus"></button>
+		</div>
+	</div>
+	</div>
+
+</form>
+
+
+	<div class="pull-right">
+		<input class="form-control" placeholder="Pesquisar" type="text" ng-model="criteria" >
+	</div>
+	<div class="pull-left">
+		<b>Total de {{paginate.total}} profissões</b>
+	</div>
+			
+
+	<table class="table table-bordered" >
+			<thead>
+				<th>Codigo</th>
+				<th>Profisão</th>
+				<th>Ações</th>
+			</thead>
+			<tbody>
+				<tr ng-repeat="profissao in paginate.result.data | filter:criteria">
+					<td>{{profissao.id}}</td>
+					<td>{{profissao.nome}}</td>
+
+					<td>
+						<a class="btn btn-primary  btn-acao"   ng-click="obterEdicao(profissao)">
+							<span class="glyphicon glyphicon-file"></span></a>
+							<a class="btn btn-danger" 
+							href="javascript:func()"
+							ng-click="remover(profissao.id)" >
+							<span class="glyphicon glyphicon-remove"></span>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+	</table>
+
+
+		<nav aria-label="...">
+			<ul class="pager">
+				<li class="previous"><a href=""  ng-click="paginate.prev()">
+					<span aria-hidden="true">&larr;</span> Anterior</a>
+				</li>
+				<li class="next">
+					<a href="" ng-click="paginate.next()"> <span aria-hidden="true">&rarr;</span>
+						Próximo
+					</a>
+				</li>
+			</ul>
+		</nav>

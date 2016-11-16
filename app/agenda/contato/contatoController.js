@@ -2,23 +2,27 @@
 
 contatoModulo.controller('contatoController', [
   '$scope', '$routeParams' , '$location', 
-  'FlashService', 'getPessoas', 'getPessoa', 'updatePessoa', 
-  'insertPessoa', 'removePessoa', 'SimplePaginate', 'updateTelefone',
+  'FlashService', 'getPessoas', 'getPessoa', 
+  'updatePessoa', 'insertPessoa', 'removePessoa', 
+  'SimplePaginate', 'updateTelefone', '$rootScope', 
+  'listarProfissao', 'inserirTelefone',
   function($scope, $routeParams, $location ,
     FlashService, getPessoas, getPessoa ,
-    updatePessoa, insertPessoa, removePessoa, SimplePaginate, updateTelefone){
+    updatePessoa, insertPessoa, removePessoa, 
+    SimplePaginate, updateTelefone, $rootScope , 
+    listarProfissao, inserirTelefone){
 
     $scope.contatos = [];
 
-    $scope.contato = [];
+    $scope.contato = {};
 
-    $scope.contato.telefones = [{'id':1}];
+    $scope.contato.telefones = [{'idTelefone':1}];
 
+    $rootScope.usuarioId = $routeParams.usuarioId;
 
     $scope.reloadPage = function(){
-     getPessoas.query(function(response){
+     getPessoas.query({usuarioId : $scope.usuarioId},function(response){
        SimplePaginate.configure({
-                // data:response.data.data,
                 data:response,
                 perPage: 5
               });
@@ -34,23 +38,26 @@ contatoModulo.controller('contatoController', [
           $scope.paginate.result = SimplePaginate.prev();
         }
       };
+    },function(){
+      FlashService.Error("Erro ao carregar a lista");
     });
    }
 
-   $scope.reloadPage();
+   // $scope.reloadPage();
 
     //pega um contanto selecionado
-    if($routeParams.contatoId != null ){
+    if( $routeParams.contatoId != null){
 
-      getPessoa.get({contatoId : $routeParams.contatoId}, function(contato){
+        getPessoa.get({contatoId : $routeParams.contatoId},function(resposta){
 
-        $scope.contato  = contato;
+              resposta.profissao = {id : resposta.profissaoId , nome : resposta.profissaoDescricao};  
+              $scope.contato = resposta;
+              
+        },function(){
+          FlashService.Error("Usuario informado não foi encontrado");
+        });
 
-      },function(error){
-    
-        FlashService.Error("Contato selecionado não foi encontrado");
-
-      });
+       
     }
 
     //remove um contato 
@@ -59,10 +66,8 @@ contatoModulo.controller('contatoController', [
      var resposta = confirm("Deseja remover esse registro?");
 
      if(resposta == true){
-
-      removePessoa.remove({contatoId : id}, function(){
+      removePessoa.remove({usuarioId :  $scope.usuarioId, contatoId :  id}, function(){
         $scope.reloadPage()
-
       },function(erro){
         FlashService.Error("Não foi possivel excluir contato");
       });
@@ -73,46 +78,59 @@ contatoModulo.controller('contatoController', [
     //cria um novo contato 
     $scope.criaNovoContato = function(contato){
 
+   contato.profissaoId = contato.profissao.id;
 
-     var listaTelefone = contato.telefones;
+  if(contato.id == null ){
 
-     if(contato.id == null ){
+        insertPessoa.save({usuarioId :  $scope.usuarioId}, contato, function(){
+        $location.path('/contato/'+ $scope.usuarioId);
 
-      var contatoEntrada =  JSON.stringify({
-        nome: contato.nome,
-        telefones: listaTelefone});
-
-      insertPessoa.save(contatoEntrada, function(){
-        $location.path('/contato');
       },function(error){
         FlashService.Error('Erro ao criar contato (Status :' + error.status+')');
       });
       
-    }else{
+     }else{
 
-    updateTelefone.save({contatoId :  contato.id}, contato.telefones, function(){},function(erro){
-      console.log(erro.data.message);
-      FlashService.Error("Não foi possivel editar o  telefone ");
-      return false;
-    })
+     for (i = 0; i < contato.telefones.length; i++) {
+          console.log(contato.telefones[i]);
+          if(contato.telefones[i].id == null){
+            $scope.inserirTelefone(contato.telefones[i]);
+          }else{
+            $scope.updateTelefone(contato.telefones[i]);
+          }
+      }
 
-     updatePessoa.update({contatoId :  contato.id}, contato, function(){
-      $location.path('/contato');
+    updatePessoa.update({usuarioId :  $scope.usuarioId, contatoId :  $routeParams.contatoId}, contato, function(){
+        $location.path('/contato/'+ $scope.usuarioId);
 
-    },function(erro){
-
-      FlashService.Error("Não foi possivel editar o  contato ");
-
-    });
+      },function(erro){
+         FlashService.Error("Não foi possivel editar o  contato ");
+      });
 
    } 
  };
 
+  $scope.inserirTelefone = function(telefone){
+      inserirTelefone.save({contatoId :  $routeParams.contatoId}, telefone, function(){
+
+      },function(){
+           FlashService.Error("Não foi possivel inserir telefone " + telefone );
+           return;
+      });
+ }
+
+ $scope.updateTelefone = function(telefone){
+   updateTelefone.update( telefone , function(){},
+      function(){
+           FlashService.Error("Não foi possivel atualizar telefone " + telefone );
+           return;
+      });
+}
 
     //adiciona campo para digitar o telefone
     $scope.adicionaTelefone = function() {
       var id = $scope.contato.telefones.length+1;
-      $scope.contato.telefones.push({'id':id});
+      $scope.contato.telefones.push({'idTelefone':id});
     };
 
     //remove campo do telefone
@@ -146,6 +164,19 @@ contatoModulo.controller('contatoController', [
 
     });
   
+  $scope.listarProfissoes = function(){
+
+      listarProfissao.query(function(profissoes){
+        $scope.profissoes = profissoes;
+
+      },function(){
+        FlashService.Error("Não foi possivel carregar a lista de Profissoes")
+      })
+  }
+
+  $scope.carregaProfissao = function(profissao){
+      $scope.contato.profissao = profissao;
+  }
 
 }]);
 

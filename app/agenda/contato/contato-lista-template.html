@@ -1,27 +1,26 @@
 
-	<div ng-init="reloadPage">
-		<div class="col-lg-6 pull-left">
-			<input class="form-control" 
-			placeholder="Pesquisar" 
-			type="text" 
+	<div ng-init="reloadPage()">
+
+		<div class="pull-left">
+			<input class="form-control" placeholder="Pesquisar" type="text" 
 			ng-model="criteria" >
-	</div>
+		</div>
 		
 		<!-- <a class="btn btn-success pull-right"  href="#/contato/novo">
 			<span class="glyphicon glyphicon-plus"></span></a>
 		</div> -->
-		<!-- <p>Mostrando registros de {{paginate.result.from}} até {{paginate.result.to}} de um total de {{paginate.total}}</p> -->
+		<b class="pull-right">Total de {{paginate.total}} contatos na sua lista</b>
 		<table class="table table-bordered" >
 			<thead>
 				<th>Nome</th>
-				<th>Profisão</th>
+				<th>Profissão</th>
 				<th>Telefone</th>
 				<th>Ações</th>
 			</thead>
 			<tbody>
 				<tr ng-repeat="contato in paginate.result.data | filter:criteria">
 					<td>{{contato.nome}}</td>
-					<td>{{contato.profissao}}</td>
+					<td>{{contato.profissaoDescricao}}</td>
 					<td >
 						<select class="btn btn-default">
 						<option ng-repeat="tel in contato.telefones">{{tel.numero}}</option>
@@ -30,8 +29,11 @@
 					</td>
 
 					<td>
-						<a class="btn btn-primary  btn-acao"  href="#/contato/visualizar/{{contato.id}}"> 
+						<a class="btn btn-primary  btn-acao"   href="#/contato/{{usuarioId}}/visualizar/{{contato.id}}">
 							<span class="glyphicon glyphicon-file"></span></a>
+<!-- 
+							<button class="btn btn-primary" href="#/contato/visualizar">
+							<span class="glyphicon glyphicon-file"></button> -->
 
 							<a class="btn btn-danger" 
 							href="javascript:func()"

@@ -12,33 +12,18 @@ loginModulo.controller('loginController',[
     $scope.login = function(acesso){
       $scope.dataLoading = true;
       AuthenticationService.Login(acesso.login, acesso.senha, function (response) {
-        if (response.success) {
-          AuthenticationService.SetCredentials(acesso.login, acesso.senha);
-          $location.path('/contato');
+        if (response.status == 200) {
+          AuthenticationService.SetCredentials(response, acesso.senha);
+          $location.path('/contato/'+response.id);
         } else {
-          FlashService.Error(response.message);
+          if(response.status == 500){
+             FlashService.Error("Erro inesperado no servidor : Status " + response.status );
+             $scope.dataLoading = false;
+             return;
+          }
+          FlashService.Error("Nome de usuario ou senha esta incorreto" );
           $scope.dataLoading = false;
         }
       });
     };
-
-		// function initController() {
-  //           // reset login status
-  //           AuthenticationService.ClearCredentials();
-  //       }
-
-  //       function login2() {
-  //       	vm.dataLoading = true;
-  //       	AuthenticationService.Login(vm.username, vm.password, function (response) {
-  //       		if (response.success) {
-  //       			AuthenticationService.SetCredentials(vm.username, vm.password);
-  //       			$location.path('/');
-  //       		} else {
-  //       			FlashService.Error(response.message);
-  //       			vm.dataLoading = false;
-  //       		}
-  //       	});
-  //       }
-
-
 }]);

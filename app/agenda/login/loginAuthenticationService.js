@@ -2,8 +2,8 @@
 
 usuarioModulo.factory('AuthenticationService', AuthenticationService);
 
-AuthenticationService.$inject = ['$http', '$cookies', '$rootScope', '$timeout', 'usuarioServiceLS'];
-function AuthenticationService($http, $cookies, $rootScope, $timeout, usuarioServiceLS) {
+AuthenticationService.$inject = ['$http', '$cookies', '$rootScope', '$timeout', 'usuarioServiceLS', 'loginService', ];
+function AuthenticationService($http, $cookies, $rootScope, $timeout, usuarioServiceLS, loginService) {
     var service = {};
 
     service.Login = Login;
@@ -12,40 +12,28 @@ function AuthenticationService($http, $cookies, $rootScope, $timeout, usuarioSer
 
     return service;
 
-    function Login(username, senha, callback) {
-
-            /* Dummy authentication for testing, uses $timeout to simulate api call
-            ----------------------------------------------*/
-            $timeout(function () {
-                var response;
-                usuarioServiceLS.GetByUsername(username)
-                .then(function (usuario) {
-                    if (usuario !== null && usuario.senha === senha) {
-                        response = { success: true };
-                    } else {
-                        response = { success: false, message: 'Login ou senha esta incorreto' };
-                    }
-                    callback(response);
-                });
-            }, 1000);
+    function Login(user, pass, callback) {
 
             /* Use this for real authentication
             ----------------------------------------------*/
-            //$http.post('/api/authenticate', { username: username, password: password })
-            //    .success(function (response) {
-            //        callback(response);
-            //    });
-
+            loginService.get({user : user, pass : pass}, function(resposta){
+                resposta.status = 200;
+                callback(resposta);
+            },function(error){
+                callback(error);
+            })
+       
         }
 
-        function SetCredentials(username, password) {
-            var authdata = Base64.encode(username + ':' + password);
+        function SetCredentials(usuario , password) {
+            var authdata = Base64.encode(usuario.nome + ':'+password);
 
 
             $rootScope.globals = {
                 currentUser: {
-                    username: username,
-                    authdata: authdata
+                    usuarioId: usuario.id,
+                    usuarioNome: usuario.nome,
+                    senha: password
                 }
             };
 

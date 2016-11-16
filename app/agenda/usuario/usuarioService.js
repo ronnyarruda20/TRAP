@@ -1,11 +1,9 @@
 'use strict';
 
-// var url = 'http://192.168.0.4:8000/agenda/contato/json';
+var urlUsuario = 'http://192.168.0.8:8090/v1/usuario/criar';
 
 usuarioModulo.factory('usuarioService', [ '$resource',
 	function( $resource){
-
-		return $resource(url+'/:usuarioId.json', {usuarioId:'usuario'}, {});
-
+		return $resource(urlUsuario, null, {});
 	}]);
 

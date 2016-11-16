@@ -28,7 +28,7 @@
   <script src="agenda/contato/contatoTelefoneFilter.js"></script>
   <script src="agenda/usuario/usuarioModulo.js"></script>
   <script src="agenda/usuario/usuarioController.js"></script>
-  <!-- <script src="agenda/usuario/usuarioService.js"></script> -->
+  <script src="agenda/usuario/usuarioService.js"></script>
   <script src="agenda/usuario/usuarioServiceLocalStorage.js"></script>
   <script src="agenda/usuario/flashService.js"></script>
   <script src="agenda/login/loginModulo.js"></script>
@@ -36,7 +36,9 @@
   <script src="agenda/login/loginService.js"></script>
   <script src="agenda/login/loginAuthenticationService.js"></script>
   <script src="agenda/navbar/navbarController.js"></script>
-
+  <script src="agenda/profissao/profissaoModulo.js"></script>
+  <script src="agenda/profissao/profissaoController.js"></script>
+  <script src="agenda/profissao/profissaoServico.js"></script>
 
   <script src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
   
@@ -50,16 +52,17 @@
      <nav  ng-if="globals.currentUser" class="navbar "   
      ng-controller="navbarController">
 
-     <a class="navbar-brand" >{{globals.currentUser.username}}</a>
+     <a class="navbar-brand" >{{globals.currentUser.usuarioNome}}</a>
 
      <ul class="nav navbar-nav">
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" >Contato
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#/contato">Lista contato</a></li>
-            <li><a href="#/contato/novo">Novo contato</a></li>
+            <li><a href="#/contato/{{usuarioId}}">Lista contato</a></li>
+            <li><a href="#/contato/{{usuarioId}}/novo">Novo contato</a></li>
             <li><a href="#/contato/listagem">Listagem teste</a></li>
+            <li><a href="#/profissao">Profissão</a></li>
           </ul>
         </li>
 

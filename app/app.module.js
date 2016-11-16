@@ -6,5 +6,6 @@ angular.module('trapApp', [
   'contatoModulo',
   'usuarioModulo',
   'loginModulo',
+  'profissaoModulo',
   'navbarModulo'
 ]);

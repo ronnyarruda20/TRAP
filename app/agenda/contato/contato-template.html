@@ -3,11 +3,10 @@
 <h2 class="pull-left">Contato</h2> 
 <!-- </div> -->
 
-<form name="form" role="form" >
+<form name="form" role="form"  >
 
 	<div class="form-group">
 		<div class="form-group" ng-class="{ 'has-error': form.nomeContato.$dirty && form.nomeContato.$error.required }">	
-			<!-- <label for="nomeLabelContato">Nome</label> -->
 			<input type="text" name="nomeContato" id="nomeContato" class="form-control" 
 			ng-model="contato.nome" required placeholder="Nome" />
 			<span ng-show="form.nomeContato.$dirty && form.nomeContato.$error.required" 
@@ -15,11 +14,23 @@
 		</div>
 	</div>
 
+	<div class="btn-group pull-left" ng-init="listarProfissoes()">
+		<div class="dropdown ">
+				  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				    Profissão
+				    <span class="caret"></span>
+			  </button>
+				  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				    <li ng-repeat="profissao in profissoes"><a ng-click="carregaProfissao(profissao)">{{profissao.nome}}</a></li>
+				  </ul>
+		</div>
+	</div><br /><br />
+
 	<div class=" form-group">
 		<div class="form-group" ng-class="{ 'has-error': form.profissaoContato.$dirty && form.profissaoContato.$error.required }">	
-			<input type="text" name="profissaoContato" id="profissaoContato" class="form-control" ng-model="contato.profissao" required   required placeholder="Profissão"/>
+			<input type="text" name="profissaoContato" id="profissaoContato" class="form-control" ng-model="contato.profissao.nome" required   required placeholder="Selecione uma profissão" disabled />
 			<span ng-show="form.profissaoContato.$dirty && form.profissaoContato.$error.required" 
-			class="help-block">Profissão é obrigatória</span>
+			class="help-block" >Profissão é obrigatória</span>
 		</div>
 	</div>
 
