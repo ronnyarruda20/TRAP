@@ -1,9 +1,7 @@
 'use stric';
 
-var urlLogin = 'http://192.168.0.8:8090/v1/usuario/';
+loginModulo.factory('loginService',[ '$resource', 'ENV_VARS',  function($resource, ENV_VARS){
 
-loginModulo.factory('loginService',[ '$resource', function($resource){
-
-        return $resource(urlLogin + 'autenticar?user=:user&pass=:pass' , {user : 'user', pass :'pass' },{});
+        return $resource(ENV_VARS.apiUrl + '/usuario/autenticar?user=:user&pass=:pass' , {user : 'user', pass :'pass' },{});
 
 }]);

@@ -29,16 +29,15 @@
 					</td>
 
 					<td>
-						<a class="btn btn-primary  btn-acao"   href="#/contato/{{usuarioId}}/visualizar/{{contato.id}}">
+						<a class="btn btn-primary  btn-acao"   href="#/contato/{{usuarioId}}/visualizar/{{contato.id}}"
+						title="Editar Contato">
 							<span class="glyphicon glyphicon-file"></span></a>
-<!-- 
-							<button class="btn btn-primary" href="#/contato/visualizar">
-							<span class="glyphicon glyphicon-file"></button> -->
 
-							<a class="btn btn-danger" 
-							href="javascript:func()"
-							ng-click="removeContato(contato.id)" >
-							<span class="glyphicon glyphicon-remove"></span>
+							<a class="btn btn-danger" href="javascript:func()" ng-click="removeContato(contato.id)" title="Excluir contato" >
+							<span class="glyphicon glyphicon-remove"></span></a>
+
+							<a class="btn btn-primary  btn-acao"   href="#/contato/{{contato.id}}/especializacao"  title="Adicionar Profissão">
+							<span class="glyphicon glyphicon-blackboard" ></span></a>
 						</a>
 					</td>
 				</tr>

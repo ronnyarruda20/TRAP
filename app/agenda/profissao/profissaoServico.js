@@ -1,24 +1,21 @@
 'use strict';
 
-var urlProfissao = 'http://192.168.0.8:8090/v1/profissao'
 
-// http://192.168.0.8:8090/v1/profissao
-
-profissaoModulo.factory('inserirProfissao',function($resource){
-	return $resource(urlProfissao+ '/inserir', null, {});
+profissaoModulo.factory('inserirProfissao' ,function($resource, ENV_VARS){
+	return $resource(ENV_VARS.apiUrl+ '/profissao/inserir', null, {});
 });
 
-profissaoModulo.factory('alterarProfissao',function($resource){
-	return $resource(urlProfissao + '/alterar', null,{
+profissaoModulo.factory('alterarProfissao',function($resource, ENV_VARS){
+	return $resource(ENV_VARS.apiUrl + '/profissao/alterar', null,{
 		 'update': { method:'PUT' }
 	});
 });
 
-profissaoModulo.factory('listarProfissao',function($resource){
-	return $resource(urlProfissao, null, {});
+profissaoModulo.factory('listarProfissao',function($resource, ENV_VARS){
+	return $resource(ENV_VARS.apiUrl + '/profissao', null, {});
 });
 
-profissaoModulo.factory('removerProfissao',function($resource){
-	return $resource(urlProfissao + '/deletar?id=:profissaoId', {profissaoId : 'profissaoId'}, {});
+profissaoModulo.factory('removerProfissao',function($resource, ENV_VARS){
+	return $resource(ENV_VARS.apiUrl + '/profissao/deletar?id=:profissaoId', {profissaoId : 'profissaoId'}, {});
 });
 

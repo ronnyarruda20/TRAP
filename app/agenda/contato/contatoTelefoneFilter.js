@@ -1,10 +1,4 @@
 
-// var myApp = angular.module('myApp', []);
- 
-// myApp.controller('MyCtrl', function($scope) {
-//   $scope.currencyVal;
-// });
-
 contatoModulo.directive('phoneInput', function($filter, $browser) {
     return {
         require: 'ngModel',

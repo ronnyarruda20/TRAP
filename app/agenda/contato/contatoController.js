@@ -1,15 +1,15 @@
 'use strict';
 
 contatoModulo.controller('contatoController', [
-  '$scope', '$routeParams' , '$location', 
-  'FlashService', 'getPessoas', 'getPessoa', 
+  '$scope', '$routeParams','$location', 
+  'FlashService','getPessoas', 'getPessoa', 
   'updatePessoa', 'insertPessoa', 'removePessoa', 
-  'SimplePaginate', 'updateTelefone', '$rootScope', 
-  'listarProfissao', 'inserirTelefone',
-  function($scope, $routeParams, $location ,
-    FlashService, getPessoas, getPessoa ,
+  'SimplePaginate', 'updateTelefone',
+  '$rootScope','listarProfissao','inserirTelefone',
+  function($scope,$routeParams, $location ,
+    FlashService,getPessoas, getPessoa ,
     updatePessoa, insertPessoa, removePessoa, 
-    SimplePaginate, updateTelefone, $rootScope , 
+    SimplePaginate, updateTelefone,$rootScope,  
     listarProfissao, inserirTelefone){
 
     $scope.contatos = [];

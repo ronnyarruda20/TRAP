@@ -7,5 +7,15 @@ angular.module('trapApp', [
   'usuarioModulo',
   'loginModulo',
   'profissaoModulo',
-  'navbarModulo'
-]);
+  'navbarModulo',
+  'especializacaoModulo'
+]).
+
+constant("ENV_VARS", {
+    "apiUrl": "http://192.168.0.5:8090/v1/",
+    "apiToken": "myawesomeapitoken",
+    "debug": true,
+    "env": "development"
+  }
+
+  );

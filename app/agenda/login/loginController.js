@@ -2,7 +2,7 @@
 
 
 loginModulo.controller('loginController',[
-	'$scope', '$localStorage', '$location', 'AuthenticationService', 'FlashService',
+	'$scope', '$localStorage', '$location', 'AuthenticationService', 'FlashService', 
 	function($scope, $localStorage, $location, AuthenticationService, FlashService){
     $scope.dataLoading = false;
     
@@ -26,4 +26,5 @@ loginModulo.controller('loginController',[
         }
       });
     };
+
 }]);
