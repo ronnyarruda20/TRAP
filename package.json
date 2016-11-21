@@ -19,10 +19,7 @@
   ],
   "main": "app.js",
   "scripts": {
-    "postinstall": "bower install",
-    "prestart": "npm install",
-    "start": "node app.js",
-    "pretest": "npm install"
+    "start": "node app.js"
   },
   "engines": {
     "node": "5.9.1"
