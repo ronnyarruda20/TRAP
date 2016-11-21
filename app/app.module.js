@@ -12,7 +12,7 @@ angular.module('trapApp', [
 ]).
 
 constant("ENV_VARS", {
-    "apiUrl": "http://192.168.0.5:8090/v1",
+    "apiUrl": "http://icectrappwebapi.azurewebsites.net/v1",
     "apiToken": "myawesomeapitoken",
     "debug": true,
     "env": "development"
