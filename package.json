@@ -1,6 +1,7 @@
 {
   "name": "TRAPP",
-  "version": "1.0.2",
+  "version": "1.0.4",
+  "private": true,
   "description": "Sistema de para demostração do computação distribuida",
   "license": "MIT",
   "dependencies": {

@@ -92,7 +92,6 @@ contatoModulo.controller('contatoController', [
      }else{
 
      for (i = 0; i < contato.telefones.length; i++) {
-          console.log(contato.telefones[i]);
           if(contato.telefones[i].id == null){
             $scope.inserirTelefone(contato.telefones[i]);
           }else{

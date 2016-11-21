@@ -26,9 +26,6 @@
             }
         };
     });
-
-
-        console.log($scope.paginate);
         
  // var success = function(response) {
  //            SimplePaginate.configure({

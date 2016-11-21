@@ -57,7 +57,6 @@ $scope.listaContatos = function(){
       }
       verificaEspecializacao();
       $scope.especializacoes.push({});
-      console.log($scope.especializacoes);
     };
 
   $scope.removeEsp = function() {
