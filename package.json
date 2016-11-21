@@ -38,9 +38,5 @@
   },
   "dependencies": {
     "angular-input-masks": "^2.5.0"
-  },
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
   }
 }
