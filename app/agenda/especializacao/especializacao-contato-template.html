@@ -1,0 +1,54 @@
+
+
+
+<!-- <div class="col-md-12" ><label class="pull-left">{{contato.nome}}</label></div> -->
+
+<div class="container">
+	<div class="row" ><h2 class="pull-left">{{contato.nome}}</h2>	</div>
+	
+		<dir class="row pull-left">
+			
+			<div class="btn-group">
+				
+				<button class="btn btn-success pull-left" ng-click="adicionaEsp()">
+							<i class="glyphicon glyphicon-plus"></i></button>
+
+			</div>
+			<div class="btn-group">
+				
+				<button class="btn btn-danger"  ng-click="removeEsp()">
+						<i class="glyphicon glyphicon-minus"></i></button>
+			</div>
+		</dir>
+
+		<div class="row"></div><br/>
+		
+		<dir class="row pull-left">
+			<div ng-repeat="especializacao in especializacoes">
+				<div  class="form-group">
+						<input class="form-control"  type="text"
+							ng-model="especializacao.nome" placeholder="Digite uma especializaçao" > 
+				</div>
+
+			</div>
+
+		</dir>
+
+	<div class="row"></div><br/>
+
+	<dir class="row pull-left">
+		<div class="btn-group">
+						<button class="btn btn-primary" ng-click="criaNovoContato(contato)">Salvar</button>
+		</div>
+		<div class="btn-group">
+						<a class="btn btn-primary " href="#/contato">Voltar</a>
+
+		</div>
+	</div>
+
+</div>
+
+
+
+
+	

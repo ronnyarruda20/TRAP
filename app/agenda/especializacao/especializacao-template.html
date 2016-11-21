@@ -1,54 +1,71 @@
 
+<!-- <div class="row form-group">  -->
+<div ><h2 class="pull-left">Especialização</h2></div>
+<!-- </div> -->
 
+<form name="form" role="form"  ng-init = "listaEspecializacao()">
 
-<!-- <div class="col-md-12" ><label class="pull-left">{{contato.nome}}</label></div> -->
+	<div class="form-group">
 
-<div class="container">
-	<div class="row" ><h2 class="pull-left">{{contato.nome}}</h2>	</div>
-	
-		<dir class="row pull-left">
-			
-			<div class="btn-group">
-				
-				<button class="btn btn-success pull-left" ng-click="adicionaEsp()">
-							<i class="glyphicon glyphicon-plus"></i></button>
-
-			</div>
-			<div class="btn-group">
-				
-				<button class="btn btn-danger"  ng-click="removeEsp()">
-						<i class="glyphicon glyphicon-minus"></i></button>
-			</div>
-		</dir>
-
-		<div class="row"></div><br/>
-		
-		<dir class="row pull-left">
-			<div ng-repeat="especializacao in especializacoes">
-				<div  class="form-group">
-						<input class="form-control"  type="text"
-							ng-model="especializacao.nome" placeholder="Digite uma especializaçao" > 
-				</div>
-
-			</div>
-
-		</dir>
-
-	<div class="row"></div><br/>
-
-	<dir class="row pull-left">
-		<div class="btn-group">
-						<button class="btn btn-primary" ng-click="criaNovoContato(contato)">Salvar</button>
+		<div class="row" ng-class="{ 'has-error': form.especializacaoNome.$dirty && form.especializacaoNome.$error.required }">	
+		<div class="col-md-10">
+			<input type="text" name="especializacaoNome" id="especializacaoNome" class="form-control" 
+			ng-model="especializacao.nome" required placeholder="Nome" />
+			<span ng-show="form.especializacaoNome.$dirty && form.especializacaoNome.$error.required" 
+			class="help-block">Nome é obrigatorio</span>
 		</div>
-		<div class="btn-group">
-						<a class="btn btn-primary " href="#/contato">Voltar</a>
-
+			
+		<div class="col-md-2">
+			 <button class="btn btn-primary" ng-click="inserirEspecializacao(especializacao)"><span class="glyphicon glyphicon-plus"></button>
 		</div>
 	</div>
+	</div>
 
-</div>
+</form>
 
 
+	<div class="pull-right">
+		<input class="form-control" placeholder="Pesquisar" type="text" ng-model="criteria" >
+	</div>
+	<div class="pull-left">
+		<b>Total de {{paginate.total}} especialização</b>
+	</div>
+			
+
+	<table class="table table-bordered" >
+			<thead>
+				<th>Codigo</th>
+				<th>Especialização</th>
+				<th>Ações</th>
+			</thead>
+			<tbody>
+				<tr ng-repeat="especializacao in paginate.result.data | filter:criteria">
+					<td>{{especializacao.id}}</td>
+					<td>{{especializacao.nome}}</td>
+
+					<td>
+						<a class="btn btn-primary  btn-acao"   ng-click="obterEdicao(especializacao)">
+							<span class="glyphicon glyphicon-file"></span></a>
+							<a class="btn btn-danger" 
+							href="javascript:func()"
+							ng-click="remover(especializacao)" >
+							<span class="glyphicon glyphicon-remove"></span>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+	</table>
 
 
-	
+		<nav aria-label="...">
+			<ul class="pager">
+				<li class="previous"><a href=""  ng-click="paginate.prev()">
+					<span aria-hidden="true">&larr;</span> Anterior</a>
+				</li>
+				<li class="next">
+					<a href="" ng-click="paginate.next()"> <span aria-hidden="true">&rarr;</span>
+						Próximo
+					</a>
+				</li>
+			</ul>
+		</nav>
