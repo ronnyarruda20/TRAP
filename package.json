@@ -1,33 +1,22 @@
 {
   "name": "TRAPP",
-  "private": true,
   "version": "1.0.2",
   "description": "Sistema de para demostração do computação distribuida",
-  "repository": "https://github.com/ronnyarruda20/TRAP.git",
   "license": "MIT",
-  "devDependencies": {
-    "bower": "^1.7.7",
-    "grunt": "^0.4.5",
-    "grunt-contrib-concat": "^1.0.1",
-    "grunt-contrib-jshint": "^1.0.0",
-    "grunt-contrib-nodeunit": "~0.4.1",
-    "grunt-contrib-uglify": "~0.5.0",
-    "grunt-contrib-watch": "^1.0.0",
-    "grunt-deploy": "^0.1.7",
-    "http-server": "^0.9.0",
-    "jasmine-core": "^2.4.1",
-    "jshint-stylish": "^2.2.1",
-    "karma": "^0.13.22",
-    "karma-chrome-launcher": "^0.2.3",
-    "karma-firefox-launcher": "^0.1.7",
-    "karma-jasmine": "^0.3.8",
-    "protractor": "^3.2.2"
-  },
   "dependencies": {
     "angular-cookies": "^1.5.8",
     "angular-input-masks": "^2.5.0",
     "express": "4.13.3"
   },
+   "repository": {
+    "type": "git",
+    "url": "https://github.com/ronnyarruda20/TRAP.git"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
   "main": "app.js",
   "scripts": {
     "postinstall": "bower install",
