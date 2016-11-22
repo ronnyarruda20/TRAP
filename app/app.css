@@ -19,7 +19,7 @@ body{
     display: flex;
     flex-direction: column;
     height: 100%;
-  font: 400 15px/1.4 'Open Sans',sans-serif;
+    font: 400 15px/1.4 'Open Sans',sans-serif;
 }
 
 header{
@@ -86,26 +86,36 @@ header .header-limiter a {
 
 header .header-limiter nav a{
     /*display: inline-block;*/
-    /*padding: 0 20px;*/
-    /*text-decoration: none;*/
-    /*color: #ffffff;*/
-    /*border-radius: 3px;*/
+    /*padding: 50 20px;*/
+    /*margin-top: 50px;*/
+    text-decoration: none;
+    color: #acb0b7;
+    border-radius: 3px;
     /*padding: 0px 25px;*/
     /*background-color: #D6336A;*/
-/*    font-size: 14px;
+    /*font-size: 14px;*/
     opacity: 0.9;
-    font-weight: bold;*/
+    font-weight: bold;
 }
+
 
 header .header-limiter nav a:hover{
   opacity: 1;
+  color: #272828;
+  background-color: #508ef4;
+}
+
+header .header-limiter nav a:focus {
+    background-color: #6dbcc9;
 }
 
 header .header-limiter nav a.selected {
   color: #608bd2;
   pointer-events: none;
   opacity: 1;
+  background-color: #508ef4;
 }
+
 
 /* Making the header responsive */
 
