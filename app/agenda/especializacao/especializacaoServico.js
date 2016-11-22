@@ -17,6 +17,19 @@ profissaoModulo.factory('alterarEspecializacao',function($resource, ENV_VARS){
  		});
  });
 
+ especializacaoModulo.factory('listaPorPessoaEspecializacao', function($resource, ENV_VARS){
+ 		return $resource(ENV_VARS.apiUrl + '/pessoa-especializacao/por-pessoa/:pessoaId' , {}, {
+ 			'get' : { params : {pessoaId : ':pessoaId'}}
+ 		});
+ });
+
 profissaoModulo.factory('deletarEspecializacao' ,function($resource, ENV_VARS){
 	return $resource(ENV_VARS.apiUrl+ '/especializacao/deletar?id=:especializacaoId', {especializacaoId : ':especializacaoId'}, {});
 });
+
+
+profissaoModulo.factory('inserirPessoaEspecializacao' ,function($resource, ENV_VARS){
+	return $resource(ENV_VARS.apiUrl+ '/pessoa-especializacao/inserir?pessoaId=:pessoaId&especializacaoId=:especializacaoId', 
+		{pessoaId : ':pessoaId', especializacaoId : ':especializacaoId'}, {});
+});
+

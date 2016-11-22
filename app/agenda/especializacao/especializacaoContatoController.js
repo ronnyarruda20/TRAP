@@ -3,15 +3,59 @@
  especializacaoModulo.controller('especializacaoContatoController', 
  	['$scope', '$routeParams' , 'FlashService', 
   'getTodasPessoas', 'inserirEspecializacao', 
-  'listaEspecializacao', 'SimplePaginate',
+  'listaEspecializacao', 'SimplePaginate', 'listaPorPessoaEspecializacao',
+  'inserirPessoaEspecializacao',
  	function($scope, $routeParams, FlashService, 
     getTodasPessoas, inserirEspecializacao, 
-    listaEspecializacao, SimplePaginate){
+    listaEspecializacao, SimplePaginate, listaPorPessoaEspecializacao,
+    inserirPessoaEspecializacao){
 
-    $scope.listaEspecializacao = function(){
+    $scope.especializacoesPorPessoas = [];
+
+    $scope.especializacoes = [];
+
+    listaPorPessoaEspecializacao.query({pessoaId : $routeParams.contatoId},function(especializacoesPorPessoas){
+
+            $scope.especializacoesPorPessoas = especializacoesPorPessoas;
+      },function(){
+        FlashService.Error("Erro ao carregar a lista");
+      });
+  
       listaEspecializacao.query(function(especializacoes){
-             SimplePaginate.configure({
-                  data:especializacoes,
+          $scope.especializacoes = especializacoes;
+          for (var i = 0; i < $scope.especializacoesPorPessoas.length; i++) {
+            for (var i = 0; i <  $scope.especializacoes.length; i++) {
+               if($scope.especializacoesPorPessoas[i].nome == $scope.especializacoes[i].nome){
+                    $scope.especializacoes.splice($scope.especializacoesPorPessoas[i], 1);
+               }
+            }
+          }
+             $scope.carregarLista($scope.especializacoes);
+        
+      },function(){
+        FlashService.Error("Erro ao carregar a lista");
+      });
+
+
+  //pegar uma especialização
+  $scope.pegarEspecializacao = function(key, especializacao){
+    $scope.especializacoes.splice(key, 1);
+    $scope.adicionaEspecializacaoPessoa(especializacao);
+    $scope.carregarLista($scope.especializacoes);
+  }
+ 
+ $scope.adicionaEspecializacaoPessoa = function(especializacao){
+    $scope.especializacoesPorPessoas.push(especializacao);
+ }
+  getTodasPessoas.get({contatoId : $routeParams.contatoId}, function(response){
+      $scope.contato = response;
+  },function(){
+
+  });
+
+  $scope.carregarLista = function(especializacoe){
+      SimplePaginate.configure({
+                  data:especializacoe,
                   perPage: 5
                 });
 
@@ -26,106 +70,30 @@
             $scope.paginate.result = SimplePaginate.prev();
           }
         };
-      },function(){
-        FlashService.Error("Erro ao carregar a lista");
-      });
- }
- 
-  $scope.especializacoes = [{}];
-
-$scope.listaContatos = function(){
-  getTodasPessoas.get({contatoId : $routeParams.contatoId}, function(response){
-      $scope.contato = response;
-  },function(){
-
-  });
-}
-
- 	// $scope.especializacoes = [{'idTelefone':1}];
-
- 	// $scope.inserirEspecializacao = function(especializacao){
- 	// 	inserirEspecializacao.save({contatoId : $routeParams.contatoId}, especializacao,function(){},
- 	// 		function(){
- 	// 			FlashService.Error("Não foi possivel salvar")
- 	// 		});
- 	// }
-
- 	$scope.adicionaEsp = function() {
-      $scope.especializacoes.length+1;
-      if( $scope.especializacoes.length > 4){
-        return;
-      }
-      verificaEspecializacao();
-      $scope.especializacoes.push({});
-    };
-
-  $scope.removeEsp = function() {
-     var ultimoValor = $scope.especializacoes.length-1;
-       if(ultimoValor < 1){
-      	return false;
-    	}
-    		$scope.especializacoes.splice(ultimoValor);
- 		};
-
-  var verificaEspecializacao = function() {
-      for (var i = $scope.especializacoes.length; i >= 0; i++) {
-            if($scope.especializacoes[i].id =! null && $scope.especializacoes[i].id == ''){
-                $scope.inserirEspecializacao($scope.especializacoes[i])
-            }
-      }
-  } 
-
-
- var inserirEspecializacao = function(especializacoo){
-      inserirEspecializacao.save( especializacoo , function(response){
-              
-      },function(){
-          FlashService.Error("Não foi possivel incluir essa especializacao");
-      });
   }
 
-  $scope.inserir = function(profissao){
+  $scope.removerPessoaEspecializacao = function(especializacoe){
 
+    var resposta = confirm("Deseja remover esse registro?");
 
-    if(profissao.id != null){
+     if(resposta == true){
 
-      alterarProfissao.update(JSON.stringify(profissao), function(){
-        $scope.listaProfissoes();
-        FlashService.Success("Foi alterado com sucesso");
-        $scope.profissao = null;
-      },function(){
-        FlashService.Error("Não foi possivel alterar está profissão");
-      })
+     }
+  }
 
+  $scope.inserirPessoaEspecializacao = function(especializacoesPorPessoas){
+    for (var i = 0; i < especializacoesPorPessoas.length; i++) {
 
-    }else{
+      inserirPessoaEspecializacao.save({pessoaId : $routeParams.contatoId , 
+            especializacaoId : especializacoesPorPessoas[i].id },function(){
 
-    inserirProfissao.save(profissao, function(){
-
-      $scope.listaProfissoes();
-      $scope.profissao.nome = '';
-
-    },function(){
-        FlashService.Error("Não foi possivel incluir essa especializacao");
-    });
+      },
+      function(){
+            FlashService.Error("Não foi possivel inserir especialização para esta pessoa");
+            return;
+      });
+      
     }
-
-    
   }
-
-
-  $scope.remover = function(profissaoId){
-
-    removerProfissao.remove({profissaoId : profissaoId}, function(){
-      $scope.listaProfissoes();
-    },function(){
-        FlashService.Error("Não foi possivel remover esta profissão");
-    })
-  }
-
-
-
-
-
 
 }]);

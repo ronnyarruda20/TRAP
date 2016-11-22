@@ -5,40 +5,49 @@
 
 <div class="container">
 	<div class="row" ><h2 class="pull-left">{{contato.nome}}</h2>	</div>
-	
-		<dir class="row pull-left">
+
+	<dir class="row">  
+		<div class="col-md-4">
+
 			
-			<div class="btn-group">
+			<div class="list-group" >
+			<a  class="list-group-item list-group-item-action"
+			ng-repeat="especializacao in especializacoesPorPessoas | filter:criteria"
+			ng-click="removerPessoaEspecializacao(especializacao)">{{especializacao.nome}}</a>
+			</div>
 				
-				<button class="btn btn-success pull-left" ng-click="adicionaEsp()">
-							<i class="glyphicon glyphicon-plus"></i></button>
+		</div>
 
-			</div>
-			<div class="btn-group">
-				
-				<button class="btn btn-danger"  ng-click="removeEsp()">
-						<i class="glyphicon glyphicon-minus"></i></button>
-			</div>
-		</dir>
+		<div class="col-md-4">
 
-		<div class="row"></div><br/>
-		
-		<dir class="row pull-left">
-			<div ng-repeat="especializacao in especializacoes">
-				<div  class="form-group">
-						<input class="form-control"  type="text"
-							ng-model="especializacao.nome" placeholder="Digite uma especializaçao" > 
-				</div>
-
+			<div class="list-group" >
+			<a class="list-group-item list-group-item-action"
+			ng-repeat="(key, especializacao) in paginate.result.data | filter:criteria"
+			ng-click="pegarEspecializacao(key, especializacao)">{{especializacao.nome}}</a>
 			</div>
 
-		</dir>
+
+				<nav aria-label="...">
+					<ul class="pager">
+						<li class="previous"><a href=""  ng-click="paginate.prev()">
+							<span aria-hidden="true">&larr;</span> Anterior</a>
+						</li>
+						<li class="next">
+							<a href="" ng-click="paginate.next()"> <span aria-hidden="true">&rarr;</span>
+								Próximo
+							</a>
+						</li>
+					</ul>
+				</nav>
+			
+		</div>
+	</dir>
 
 	<div class="row"></div><br/>
 
 	<dir class="row pull-left">
 		<div class="btn-group">
-						<button class="btn btn-primary" ng-click="criaNovoContato(contato)">Salvar</button>
+						<button class="btn btn-primary" ng-click="inserirPessoaEspecializacao(especializacoesPorPessoas)">Salvar</button>
 		</div>
 		<div class="btn-group">
 						<a class="btn btn-primary " href="#/contato">Voltar</a>
