@@ -30,6 +30,8 @@ profissaoModulo.factory('deletarEspecializacao' ,function($resource, ENV_VARS){
 
 profissaoModulo.factory('inserirPessoaEspecializacao' ,function($resource, ENV_VARS){
 	return $resource(ENV_VARS.apiUrl+ '/pessoa-especializacao/inserir?pessoaId=:pessoaId&especializacaoId=:especializacaoId', 
-		{pessoaId : ':pessoaId', especializacaoId : ':especializacaoId'}, {});
+		{}, {
+			'save' : { params : {pessoaId : ':pessoaId', especializacaoId : ':especializacaoId'}}
+		});
 });
 
